@@ -230,10 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfe95fc3cad09d4898ce222117c8e98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 8
+  runSpeed: 5
   walkSpeed: 2
-  crouchSpeed: 4
-  spintSpeed: 12
+  crouchSpeed: 1
+  spintSpeed: 8
   mouseControl:
     damping: {x: 5, y: 5}
     sensitivity: {x: 2, y: 6}

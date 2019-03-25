@@ -93,6 +93,10 @@ public class Player : MonoBehaviour
         {
             moveSpeed = spintSpeed;
         }
+        if (playerInput.isCrouching)
+        {
+            moveSpeed = crouchSpeed;
+        }
 
         Vector2 direction = new Vector2(playerInput.vertical * moveSpeed, playerInput.horizontal * moveSpeed);
         moveController.Move(direction);

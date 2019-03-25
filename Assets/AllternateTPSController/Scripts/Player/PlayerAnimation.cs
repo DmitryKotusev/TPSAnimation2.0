@@ -17,6 +17,7 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetFloat("Horizontal", GameManager.Instance.InputController.horizontal);
         animator.SetBool("IsWalking", GameManager.Instance.InputController.isWalking);
         animator.SetBool("IsSprinting", GameManager.Instance.InputController.isSprinting);
+        animator.SetBool("IsCrouching", GameManager.Instance.InputController.isCrouching);
         animator.applyRootMotion = false;
     }
 }
