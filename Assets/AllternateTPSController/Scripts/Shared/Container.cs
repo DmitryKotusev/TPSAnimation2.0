@@ -14,9 +14,11 @@ public class Container : MonoBehaviour
 
         public int amountTaken;
 
-        public ContainerItem()
+        public ContainerItem(string name, int maximum)
         {
             id = System.Guid.NewGuid();
+            this.maximum = maximum;
+            this.name = name;
         }
 
         public int Remaining
@@ -42,19 +44,13 @@ public class Container : MonoBehaviour
 
     public List<ContainerItem> items;
 
-    private void Awake()
-    {
-        items = new List<ContainerItem>();
-    }
-
     public System.Guid Add(string name, int maximum)
     {
-        items.Add(new ContainerItem
+        if(items == null)
         {
-            maximum = maximum,
-            name = name,
+            items = new List<ContainerItem>();
         }
-        );
+        items.Add(new ContainerItem(name, maximum));
         return items.Last().id;
     }
 
