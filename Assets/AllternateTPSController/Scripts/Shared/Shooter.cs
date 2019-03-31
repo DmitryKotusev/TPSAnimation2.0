@@ -10,11 +10,12 @@ public class Shooter : MonoBehaviour
     [SerializeField]
     Projectile projectile;
 
-    [HideInInspector]
-    public Transform muzzle;
+    [SerializeField]
+    Transform hand;
 
     float nextFireAllowed;
     protected bool canFire;
+    Transform muzzle;
 
     WeaponReloader reloader;
 
@@ -22,6 +23,7 @@ public class Shooter : MonoBehaviour
     {
         muzzle = transform.Find("Muzzle");
         reloader = GetComponent<WeaponReloader>();
+        transform.SetParent(hand);
     }
 
     public void Reload()
@@ -37,14 +39,18 @@ public class Shooter : MonoBehaviour
     {
         canFire = false;
 
-        if(Time.time < nextFireAllowed)
+        if (Time.time < nextFireAllowed)
         {
             return;
         }
 
-        if(reloader != null)
+        if (reloader != null)
         {
-            if(reloader.IsReloading)
+            if (reloader.IsReloading)
+            {
+                return;
+            }
+            if (reloader.shotsFiredInClip >= reloader.clipSize)
             {
                 return;
             }
