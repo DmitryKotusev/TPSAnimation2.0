@@ -13,6 +13,12 @@ public class Shooter : MonoBehaviour
     [SerializeField]
     Transform hand;
 
+    [SerializeField]
+    AudioController audioReload;
+
+    [SerializeField]
+    AudioController audioFire;
+
     float nextFireAllowed;
     protected bool canFire;
     Transform muzzle;
@@ -39,6 +45,7 @@ public class Shooter : MonoBehaviour
             reloader.Reload();
             print("Reloading");
         }
+        audioReload.Play();
     }
 
     public virtual void Fire()
@@ -68,6 +75,7 @@ public class Shooter : MonoBehaviour
         // instantiate bullet
         Instantiate(projectile, muzzle.position, muzzle.rotation);
 
+        audioFire.Play();
         canFire = true;
     }
 }

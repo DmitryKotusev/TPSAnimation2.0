@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
         public bool lockMouse;
     }
 
+    Vector3 previousPosition;
+
     [SerializeField]
     float runSpeed;
     [SerializeField]
@@ -23,6 +25,10 @@ public class Player : MonoBehaviour
     float spintSpeed;
     [SerializeField]
     MouseInput mouseControl;
+    [SerializeField]
+    AudioController footSteps;
+    [SerializeField]
+    float minimumMoveTresHold;
 
     CrossHair m_CrossHair;
     CrossHair CrossHair
@@ -100,5 +106,12 @@ public class Player : MonoBehaviour
 
         Vector2 direction = new Vector2(playerInput.vertical * moveSpeed, playerInput.horizontal * moveSpeed);
         moveController.Move(direction);
+
+        if(Vector3.Distance(previousPosition, transform.position) > minimumMoveTresHold)
+        {
+            footSteps.Play();
+        }
+
+        previousPosition = transform.position;
     }
 }

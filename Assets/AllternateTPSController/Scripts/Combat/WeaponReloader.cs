@@ -18,9 +18,8 @@ public class WeaponReloader : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("My name: " + name);
-        Debug.Log(inventory.GetHashCode());
         containerItemId = inventory.Add(this.name, maxAmmo);
+        Debug.Log("Weapon" + containerItemId);
     }
 
     public int roundsRemainingInClip
