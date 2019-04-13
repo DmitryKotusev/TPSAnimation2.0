@@ -23,7 +23,7 @@ public class Shooter : MonoBehaviour
     protected bool canFire;
     Transform muzzle;
 
-    WeaponReloader reloader;
+    public WeaponReloader reloader;
 
     public void Equip()
     {

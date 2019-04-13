@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class Container : MonoBehaviour
 {
@@ -40,6 +41,15 @@ public class Container : MonoBehaviour
             amountTaken += amount;
             return amount;
         }
+
+        internal void AddAmount(int amount)
+        {
+            amountTaken -= amount;
+            if (amountTaken < 0)
+            {
+                amountTaken = 0;
+            }
+        }
     }
 
     public List<ContainerItem> items;
@@ -54,13 +64,38 @@ public class Container : MonoBehaviour
         return items.Last().id;
     }
 
+    public void Put(string name, int amount)
+    {
+        ContainerItem item = items.Where(x => x.name == name).FirstOrDefault();
+        if (item == null)
+        {
+            return;
+        }
+        item.AddAmount(amount);
+    }
+
     public int TakeFromContainer(System.Guid id, int amount)
     {
-        var containerItem = items.Where(x => x.id == id).FirstOrDefault();
-        if(containerItem == null)
+        var containerItem = GetContainerItem(id);
+        if (containerItem == null)
         {
             return -1;
         }
         return containerItem.Get(amount);
+    }
+
+    public int GetAmountRemaining(System.Guid id)
+    {
+        var containerItem = GetContainerItem(id);
+        if (containerItem == null)
+        {
+            return -1;
+        }
+        return containerItem.Remaining;
+    }
+
+    public ContainerItem GetContainerItem(System.Guid id)
+    {
+        return items.Where(x => x.id == id).FirstOrDefault();
     }
 }

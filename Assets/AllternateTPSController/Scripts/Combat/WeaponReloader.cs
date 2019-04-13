@@ -10,15 +10,19 @@ public class WeaponReloader : MonoBehaviour
     float reloadTime;
     [SerializeField]
     Container inventory;
+    [SerializeField]
+    EWeaponType weaponType;
     public int clipSize;
 
     public int shotsFiredInClip;
     bool isReloading;
     System.Guid containerItemId;
 
+    public event System.Action OnAmmoChanged;
+
     private void Awake()
     {
-        containerItemId = inventory.Add(this.name, maxAmmo);
+        containerItemId = inventory.Add(weaponType.ToString(), maxAmmo);
         Debug.Log("Weapon" + containerItemId);
     }
 
@@ -27,6 +31,14 @@ public class WeaponReloader : MonoBehaviour
         get
         {
             return clipSize - shotsFiredInClip;
+        }
+    }
+
+    public int roundsRemainingInInventory
+    {
+        get
+        {
+            return inventory.GetAmountRemaining(containerItemId);
         }
     }
 
@@ -57,10 +69,17 @@ public class WeaponReloader : MonoBehaviour
     {
         isReloading = false;
         shotsFiredInClip -= amount;
+        HandleOnAmmoChanged();
     }
 
     public void TakeFormClip(int amount)
     {
         shotsFiredInClip += amount;
+        HandleOnAmmoChanged();
+    }
+
+    public void HandleOnAmmoChanged()
+    {
+        OnAmmoChanged?.Invoke();
     }
 }

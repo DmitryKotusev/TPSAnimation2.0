@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] float weaponSwitchTime;
-    Shooter[] weapons;
-    Shooter activeWeapon;
+    public Shooter[] weapons;
+    public Shooter activeWeapon;
     Transform weaponHoster;
 
     int currentWeaponIndex;
 
     bool canFire;
+
+    public event System.Action<Shooter> OnWeaponSwitch;
 
     private void Awake()
     {
@@ -55,6 +57,7 @@ public class PlayerShoot : MonoBehaviour
         canFire = true;
         activeWeapon.gameObject.SetActive(true);
         activeWeapon.Equip();
+        OnWeaponSwitch?.Invoke(activeWeapon);
     }
 
     private void Update()
