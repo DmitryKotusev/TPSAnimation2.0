@@ -23,7 +23,7 @@ public class CameraHandler : MonoBehaviour
     public float lookAngle;
     public float titlAngle;
 
-    private void FixedUpdate()
+    private void Update()
     {
         FixedTick();
     }
