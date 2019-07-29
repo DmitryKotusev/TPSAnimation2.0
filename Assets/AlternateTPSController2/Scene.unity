@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -143,9 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9edc1c535ef7c246b08d25f158359de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 603727287}
+  characterStatus: {fileID: 11400000, guid: 3e7f99a9dac4f394b88ac57f95978fbd, type: 2}
   anim: {fileID: 140701220}
   vertical: 0
   horizontal: 0
+  rotationSpeed: 10
   moveAmount: 0
 --- !u!95 &140701220 stripped
 Animator:
@@ -289,6 +292,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54703f7a1bdab43419cb12e2e21a1a2c, type: 3}
+--- !u!4 &603727287 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9149744848524888866, guid: 61f52bb0a7a93c34f9f04fd6f8430c02,
+    type: 3}
+  m_PrefabInstance: {fileID: 9149744848390018952}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &971389818
 GameObject:
   m_ObjectHideFlags: 0
