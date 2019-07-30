@@ -37,6 +37,8 @@ public class CharacterMovement : MonoBehaviour
         rotationDirection = cameraTransform.forward;
 
         RotationNormal();
+
+        characterStatus.isGround = IsGrounded();
     }
 
     public void RotationNormal()
@@ -57,5 +59,13 @@ public class CharacterMovement : MonoBehaviour
         Quaternion lookDir = Quaternion.LookRotation(targetDirection);
         Quaternion targetRot = Quaternion.Slerp(transform.rotation, lookDir, rotationSpeed * Time.deltaTime);
         transform.rotation = targetRot;
+    }
+
+    public bool IsGrounded()
+    {
+        Vector3 origin = transform.position + new Vector3(0, 0.6f, 0);
+        float distance = -0.7f;
+        Vector3 direction = Vector3.down;
+        return Physics.Raycast(origin, direction, distance);
     }
 }
